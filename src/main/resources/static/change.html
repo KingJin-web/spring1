@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="res/vue.js"></script>
+<script type="text/javascript" src="res/axios.js"></script>
+
+</body>
+<div id="main">
+    <h1>修改用户名</h1>
+    <p >ID {{id}}</p>
+    <br>
+    用户名
+    <input v-model="name" type='text' id='name'/> <br>
+    <br>
+    密码
+    <input v-model="pwd" type='text' id='pwd'/>
+    <br>
+    <br>
+    性别
+    <select id="sex" style="width: 150px" v-model="sex">
+        <option value="男">男</option>
+        <option value="女">女</option>
+    </select>
+
+    <input type='button' value='修改' id='add' @click="change">
+</div>
+<script>
+    let vue = new Vue({
+        el: "#main",
+        data: {
+            id: 0,
+            name: "",
+            pwd: "",
+            sex: ""
+        },
+        mounted: function () {
+            let test = window.location.hash;
+            test = decodeURI(test);
+            this.id = test.substring(1, test.indexOf(","));
+            //this.name =  test.substring(test.indexOf(""),test.length );
+            console.log(this.path)
+            return this.path;
+        },
+        methods: {
+            change() {
+                //  var time = new Date().getTime();
+                let url = "change.do";
+                axios.get(url, {
+                    params: {
+                        id:this.id,
+                        name: this.name,
+                        pwd: this.pwd,
+                        sex: this.sex
+                    }
+                }).then((res) => {
+                    if (res.data.code === 0) {
+                        alert(res.data.msg)
+                    } else {
+                        alert(res.data.msg)
+                    }
+                });
+            }
+        }
+    });
+</script>
+</html>
