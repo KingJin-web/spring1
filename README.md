@@ -25,7 +25,7 @@
 ![2](img/4.png)
 
 
-## 算法题
+## [算法题](src/test/java/com/king/spring1/test/Main.java)
     用java 实现一个  split 函数， 输入一个字符串，去掉重复的字符串，去掉前后空格。比如输入一个字符串:  
     a, bb, c, a ,dd  , c   c,  bb
     返回结果是：
